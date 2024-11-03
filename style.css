@@ -1,48 +1,54 @@
-/* Geral */
+/* Variáveis de Cores */
+:root {
+  --primary-color: #102f5e;
+  --secondary-color: #fdfdfd;
+  --text-color: #333;
+  --done-bg-color: #395169;
+  --done-text-color: #fff;
+  --border-color: #ccc;
+}
+
+/* Reset e Estilos Gerais */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Verdana;
-  color: #333;
+  font-family: Verdana, sans-serif;
+  color: var(--text-color);
 }
 
 body {
-  background-image: url("img/bg.jpg");
+  background-image: url("../img/bg.jpg");
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 button {
-  background-color: #fdfdfd;
-  color: #102f5e;
-  border: 2px solid #102f5e;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
   padding: 0.3rem 0.6rem;
   font-size: 1rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.4s;
+  transition: background-color 0.4s;
 }
 
 button:hover {
-  background-color: #102f5e;
-}
-
-button:hover > i {
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 button i {
-  pointer-events: none;
-  color: #102f5e;
+  color: var(--primary-color);
   font-weight: bold;
+  pointer-events: none;
 }
 
-input,
-select {
+input, select {
   padding: 0.25rem 0.5rem;
 }
 
@@ -50,26 +56,28 @@ select {
   display: none;
 }
 
-/* Todo Header */
+/* Container Principal */
 .todo-container {
   max-width: 450px;
   margin: 3rem auto 0;
-  background-color: #fdfdfd;
+  background-color: var(--secondary-color);
   padding: 1.5rem;
   border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: max-width 0.3s ease;
 }
 
 .todo-container header {
   text-align: center;
   padding: 0 1rem 1rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
 }
 
-/* Todo Form */
+/* Formulários */
 #todo-form,
 #edit-form {
   padding: 1rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
 }
 
 #todo-form p,
@@ -91,53 +99,41 @@ select {
   color: #444;
 }
 
-/* Todo Toolbar */
+/* Barra de Ferramentas */
 #toolbar {
   padding: 1rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
-}
-
-#toolbar h4 {
-  margin-bottom: 0.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 #search {
   border-right: 1px solid #ddd;
   padding-right: 1rem;
-  margin-right: 1rem;
-  width: 65%;
-  display: flex;
-  flex-direction: column;
-}
-
-#search form {
-  display: flex;
+  flex: 1;
 }
 
 #search input {
   width: 100%;
-  margin-right: 0.3rem;
 }
 
 #filter {
-  width: 35%;
-  display: flex;
-  flex-direction: column;
+  flex: 0.5;
 }
 
 #filter select {
-  flex: 1;
+  width: 100%;
 }
 
-/* Todo List */
+/* Lista de Todos */
 .todo {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 1rem 1rem;
+  padding: 1rem;
   border-bottom: 1px solid #ddd;
-  transition: 0.3s;
+  transition: background-color 0.3s;
 }
 
 .todo h3 {
@@ -150,25 +146,27 @@ select {
 }
 
 .done {
-  background: #395169;
+  background-color: var(--done-bg-color);
 }
 
 .done h3 {
-  color: #fff;
+  color: var(--done-text-color);
   text-decoration: line-through;
   font-style: italic;
 }
 
-/* Responsividade para dispositivos móveis */
+/* Responsividade para Dispositivos Móveis */
 @media (max-width: 600px) {
   body {
-    height: auto;
+    background-size: 100vw 100vh;
+    min-height: 100vh;
   }
 
   .todo-container {
-    max-width: 100%;
+    max-width: 80%;
     margin: 1rem auto;
     padding: 1rem;
+    border-radius: 10px;
   }
 
   #toolbar {
@@ -181,10 +179,6 @@ select {
     margin: 0;
     width: 100%;
     padding: 0;
-  }
-
-  #search input {
-    width: 100%;
   }
 
   #filter {
